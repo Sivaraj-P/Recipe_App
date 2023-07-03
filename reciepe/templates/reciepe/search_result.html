@@ -1,0 +1,20 @@
+{% extends 'reciepe/main.html' %} {% block content %}
+<section id="Reciepes">
+  {% for i in reciepe %}
+  <div class="card">
+    <h5 class="card-header">{{i.food_name}}</h5>
+    <img src="{{i.food_img.url}}" class="card-img-top" alt="food" />
+    <div class="card-body">
+      <h5 class="card-title">Incredients</h5>
+      <p class="card-text">{{i.incredients}}</p>
+      <hr />
+      <h5 class="card-title">Procedure</h5>
+      <p class="card-text">{{i.procedure}}</p>
+    </div>
+    <div class="card-footer text-muted">Reciepe By- {{i.user_name}}</div>
+    <a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock content %}

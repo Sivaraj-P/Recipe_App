@@ -1,0 +1,48 @@
+{% extends 'reciepe/main.html' %} {% block content %}
+
+<section id="add-reciepe">
+  <h5>Want to Add Reciepe?</h5>
+  <a href="{% url 'add_reciepe' %}" id="add-btn" class="btn btn-primary"
+    >Click Here</a
+  >
+</section>
+{% if user.is_authenticated %}
+<form class="row g-3" method="post">
+  {% csrf_token %}
+  <div class="search-btns">
+    <div class="col-auto">
+      <input
+        type="text"
+        class="form-control"
+        id="search"
+        placeholder="Enter Food Name"
+        name="search"
+      />
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+  </div>
+</form>
+<h3>Your Recipies..!</h3>
+{% else %}
+<h4>kindly login to add</h4>
+{% endif %}
+
+<section id="Reciepes">
+  {% for i in reciepe %}
+  <div class="card">
+    <h5 class="card-header">{{i.food_name}}</h5>
+    <img src="{{i.food_img.url}}" class="card-img-top" alt="food" />
+    <div class="card-body">
+      <h5 class="card-title">Incredients</h5>
+      <p class="card-text">{{i.incredients}}</p>
+      <hr />
+      <h5 class="card-title">Procedure</h5>
+      <p class="card-text">{{i.procedure}}</p>
+      <a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock content %}

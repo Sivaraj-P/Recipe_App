@@ -1,0 +1,25 @@
+{% extends 'reciepe/main.html' %} {% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+
+  <label for="Username" class="form-label">Username</label>
+  <input
+    type="text"
+    id="Username"
+    class="form-control"
+    aria-labelledby="passwordHelpBlock"
+    name="Username"
+  />
+
+  <label for="Password" class="form-label">Password</label>
+  <input
+    type="password"
+    id="Password"
+    class="form-control"
+    aria-labelledby="passwordHelpBlock"
+    name="Password"
+  />
+  <input type="submit" value="Login" />
+</form>
+
+{% endblock content %}
